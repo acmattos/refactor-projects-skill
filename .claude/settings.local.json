@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install *)",
+      "Bash(python app.py)",
+      "Bash(curl -s http://localhost:5000/produtos)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('HTTP 200, produtos:', len\\(d['dados']\\)\\)\")",
+      "Bash(curl -s http://localhost:5000/produtos/1)",
+      "Bash(curl -s http://localhost:5000/produtos/busca?q=notebook)",
+      "Bash(curl -s -X POST http://localhost:5000/login -H \"Content-Type: application/json\" -d '{\"email\":\"admin@loja.com\",\"senha\":\"admin123\"}')",
+      "Bash(curl -s http://localhost:5000/usuarios)",
+      "Bash(curl -s http://localhost:5000/usuarios/1)",
+      "Bash(curl -s -X POST http://localhost:5000/pedidos -H \"Content-Type: application/json\" -d '{\"usuario_id\":1,\"itens\":[{\"produto_id\":2,\"quantidade\":2}]}')",
+      "Bash(curl -s http://localhost:5000/pedidos)",
+      "Bash(curl -s http://localhost:5000/relatorios/vendas)",
+      "Bash(curl -s -X PUT http://localhost:5000/pedidos/2/status -H \"Content-Type: application/json\" -d '{\"status\":\"aprovado\"}')",
+      "Bash(curl -s -X POST http://localhost:5000/admin/query -H \"Content-Type: application/json\" -d '{\"sql\":\"SELECT * FROM usuarios\"}')",
+      "Bash(curl -s -X POST http://localhost:5000/admin/reset-db)",
+      "Bash(curl -s -X POST http://localhost:5000/admin/reset-db -H \"Authorization: Bearer change-me-in-production\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -X POST http://localhost:5000/admin/query -H \"Content-Type: application/json\" -d '{\"sql\":\"SELECT * FROM usuarios\"}')",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -X POST http://localhost:5000/admin/reset-db)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5000/health)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5000/usuarios)",
+      "Bash(pkill -f \"python app.py\")",
+      "Bash(pkill -f \"_src_app\")",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\" -X PUT http://localhost:5000/produtos/1 -H \"Content-Type: application/json\" -d '{\"nome\":\"Notebook Gamer Pro\",\"preco\":6499.99,\"estoque\":8}')"
+    ]
+  }
+}
