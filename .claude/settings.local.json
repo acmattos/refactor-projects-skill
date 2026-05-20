@@ -28,7 +28,30 @@
       "Bash(Select-Object -First 100)",
       "PowerShell(Get-ChildItem \"C:\\\\acmattos\\\\dev\\\\workspace\\\\refactor-projects-skill\\\\reports\" -ErrorAction SilentlyContinue | Select-Object Name; if \\(-not \\(Test-Path \"C:\\\\acmattos\\\\dev\\\\workspace\\\\refactor-projects-skill\\\\reports\"\\)\\) { \"reports dir does not exist\" })",
       "PowerShell(Remove-Item *)",
-      "PowerShell(Stop-Process *)"
+      "PowerShell(Stop-Process *)",
+      "PowerShell(Start-Sleep -Seconds 2 ; Invoke-WebRequest -Uri \"http://localhost:5000/health\" -Method GET -UseBasicParsing | Select-Object StatusCode, Content)",
+      "Bash(python -c ' *)",
+      "Bash(python src\\\\infrastructure\\\\seed.py)",
+      "Bash(python \"src/infrastructure/seed.py\")",
+      "Bash(Start-Process -NoNewWindow python -ArgumentList \"app.py\" -PassThru)",
+      "Bash(Out-Null)",
+      "Bash(Start-Sleep -Seconds 3)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(f'GET /tasks -> HTTP 200, {len\\(d\\)} tasks'\\)\")",
+      "Bash(curl *)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('password' in d, d.get\\('email'\\)\\)\")",
+      "Bash(pkill -f \"_src_application\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); [print\\(u['email'], 'task_count:', u['task_count']\\) for u in d]\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(f'{len\\(d\\)} users'\\); [print\\(u['id'], u['email']\\) for u in d]\")",
+      "Bash(kill %1)",
+      "Bash(pkill -f \"_srv3\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); [print\\(u['id'], u['email']\\) for u in d]\")",
+      "Bash(python -c \"import os; print\\(repr\\(os.getcwd\\(\\)\\)\\)\")",
+      "Bash(netstat -ano)",
+      "PowerShell(Get-Process *)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(f'{len\\(d\\)} tasks returned'\\)\")",
+      "Bash(not exist *)",
+      "PowerShell(New-Item *)",
+      "Bash(python *)"
     ]
   }
 }
