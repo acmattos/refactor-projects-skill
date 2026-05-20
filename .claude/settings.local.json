@@ -23,7 +23,12 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5000/usuarios)",
       "Bash(pkill -f \"python app.py\")",
       "Bash(pkill -f \"_src_app\")",
-      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\" -X PUT http://localhost:5000/produtos/1 -H \"Content-Type: application/json\" -d '{\"nome\":\"Notebook Gamer Pro\",\"preco\":6499.99,\"estoque\":8}')"
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\" -X PUT http://localhost:5000/produtos/1 -H \"Content-Type: application/json\" -d '{\"nome\":\"Notebook Gamer Pro\",\"preco\":6499.99,\"estoque\":8}')",
+      "Bash(Get-ChildItem -Path \"C:\\\\acmattos\\\\dev\\\\workspace\\\\refactor-projects-skill\\\\ecommerce-api-legacy\" -Recurse -Force)",
+      "Bash(Select-Object -First 100)",
+      "PowerShell(Get-ChildItem \"C:\\\\acmattos\\\\dev\\\\workspace\\\\refactor-projects-skill\\\\reports\" -ErrorAction SilentlyContinue | Select-Object Name; if \\(-not \\(Test-Path \"C:\\\\acmattos\\\\dev\\\\workspace\\\\refactor-projects-skill\\\\reports\"\\)\\) { \"reports dir does not exist\" })",
+      "PowerShell(Remove-Item *)",
+      "PowerShell(Stop-Process *)"
     ]
   }
 }
