@@ -1,8 +1,6 @@
-﻿# Skill de Auditoria e Refatora��o Arquitetural
+﻿# Skill de Auditoria e Refatoracação Arquitetural
 
 ## Desafio MBA Engenharia de Software com IA - Full Cycle
-
-# Refactor Projects Skill
 
 ## Analise Manual
  lista dos problemas identificados, classificação por severidade e justificativa 
