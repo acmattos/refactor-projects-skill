@@ -34,6 +34,19 @@ Antes de executar qualquer fase, use obrigatoriamente os arquivos de referência
 - `references/refactoring-playbook.md`
   - Playbook de refactoring com padrões concretos de transformação para cada anti-pattern, incluindo exemplos before/after.
 
+## Regra de recuperação de contexto após compactação
+
+REGRA CRÍTICA: Se o contexto da sessão foi compactado (resumo automático substituiu parte do histórico), os arquivos de referência acima NÃO estão mais no contexto ativo — apenas o SKILL.md pode ter sido preservado pelo sumário.
+
+Antes de retomar qualquer fase após compactação, execute OBRIGATORIAMENTE:
+
+1. Releia este SKILL.md integralmente para recuperar todas as regras de execução.
+2. Releia cada um dos cinco arquivos de referência listados acima (project-analysis-heuristics.md, anti-pattern-catalog.md, phase-2-report-template.md, mvc-architecture-guidelines.md, refactoring-playbook.md) usando a ferramenta de leitura de arquivos — não assuma que seu conteúdo está no contexto.
+3. Releia os arquivos do projeto que foram analisados nas fases anteriores para reconstituir a evidência original — nunca produza findings ou aplique refactoring com base apenas no sumário de contexto.
+4. Somente após as leituras acima, retome a execução da fase em que a sessão foi interrompida.
+
+Produzir output de qualquer fase sem ter relido os arquivos de referência após compactação é uma falha grave: o relatório gerado pode conter dados de projetos errados, findings sem evidência ou refactoring baseado em contexto incorreto.
+
 A skill deve ser technology-agnostic.
 Não force linguagem, framework, banco de dados, estrutura de diretórios ou naming convention sem evidência no projeto analisado.
 
@@ -292,7 +305,7 @@ Este passo é interno — não aparece no output.
 
 Formato de saída obrigatório:
 
-Se a sessão foi interrompida ou o contexto foi compactado antes de qualquer fase, releia obrigatoriamente esta seção antes de produzir qualquer output.
+Se a sessão foi interrompida ou o contexto foi compactado antes de qualquer fase, aplique obrigatoriamente a "Regra de recuperação de contexto após compactação" definida no início desta skill antes de produzir qualquer output.
 
 ================================
 PHASE 1: PROJECT ANALYSIS
@@ -399,6 +412,7 @@ A PHASE 3 deve:
 - preservar response contracts — exceto quando o contrato expõe dados sensíveis (Sensitive Data Exposure): nesses casos, remover o campo sensível tem precedência sobre a preservação do contrato
 - remover endpoints cujo design é irremediável: quando um endpoint executa entrada do usuário diretamente como SQL arbitrário, código arbitrário ou comando de sistema (ex: `db.execute(query)` onde `query` vem do request body), a vulnerabilidade não é eliminável por parametrização ou sanitização — o contrato em si é a vulnerabilidade. Nesses casos, remova o endpoint inteiramente ou substitua por operação controlada e limitada (ex: queries pré-definidas selecionáveis por identificador). A presença de autenticação não neutraliza o risco: token comprometido, insider ou erro de configuração transformam o endpoint num vetor de ataque irrestrito. Remoção tem precedência sobre preservação de rota.
 - evitar dependências desnecessárias
+- Integração de serviços detectados como dead code: quando um serviço existir mas nunca for instanciado ou chamado por nenhum handler, e seus métodos nomearem eventos de ciclo de vida de uma entidade (ex: `notify_task_assigned`, `on_order_created`, `send_welcome_email`), inferir o ponto de integração pelo nome do método e integrar no service correspondente com chamada não-bloqueante (try/except com log). Não marcar como `Pendente:` quando a intenção for inferível pelo nome dos métodos e a integração não exigir nova dependência ou infraestrutura externa. Exceção: métodos que requerem job agendado ou trigger assíncrono (ex: `notify_task_overdue`, `send_daily_digest`) devem ser marcados como `Pendente:` com instrução clara ao operador.
 
 Diretrizes de refatoração:
 - Faça a menor mudança segura possível para atingir a estrutura MVC.
@@ -493,7 +507,7 @@ Regras obrigatórias de formato da PHASE 3:
 - Não adicione seções extras, tabelas, cabeçalhos markdown (##, ###), separadores (---) ou qualquer conteúdo fora do template.
 - Não envolva o bloco em delimitadores de código (``` ```).
 - Não crie seções fora das definidas no template (Changes Applied, File Origins, Test Evidence, New Project Structure, Validation).
-- Se a sessão foi interrompida ou o contexto foi compactado antes desta fase, releia obrigatoriamente as seções "Formato de saída obrigatório da PHASE 3" e "Regras obrigatórias do arquivo gravado" desta skill antes de produzir qualquer output ou gravar o arquivo.
+- Se a sessão foi interrompida ou o contexto foi compactado antes desta fase, aplique obrigatoriamente a "Regra de recuperação de contexto após compactação" definida no início desta skill — inclui releitura dos cinco arquivos de referência e dos arquivos do projeto — antes de produzir qualquer output ou gravar o arquivo.
 
 [Execute aqui as modificações nos arquivos — edições, criações e movimentações. Não produza output de chat durante a execução.]
 
