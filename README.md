@@ -1,4 +1,4 @@
-﻿# Skill de Auditoria e Refatoracação Arquitetural
+﻿# Skill de Auditoria e Refatoração Arquitetural
 
 ## Desafio MBA Engenharia de Software com IA - Full Cycle
 
@@ -776,7 +776,7 @@ task-manager-api/
 - [x] Relatório segue o template definido nos arquivos de referência
 - [x] Cada finding tem arquivo e linhas exatos
 - [x] Findings ordenados por severidade (CRITICAL → LOW)
-- [x] Mínimo de 5 findings identificados - 16 encontrados
+- [x] Mínimo de 5 findings identificados - 17 encontrados
 - [x] Detecção de APIs deprecated incluída - `Model.query.get()` (SQLAlchemy legado) detectado em 12+ locais
 - [x] Skill pausou e pediu confirmação antes da Fase 3
 
@@ -1265,8 +1265,8 @@ grep -RnsE "(SECRET_KEY|email_password)\s*=\s*['\"][^'\"$]" src/
 
 ### Reexecutar a Skill (Iteração)
 
-Se precisar executar a skill novamente em um projeto já refatorado (ex: para t
-estar ajustes nos arquivos de referência), a skill vai analisar a estrutura atual 
+Se precisar executar a skill novamente em um projeto já refatorado (ex: para 
+testar ajustes nos arquivos de referência), a skill vai analisar a estrutura atual 
 e adaptar os findings ao estado presente - não ao estado original. Isso é o 
 comportamento esperado: a skill é agnóstica de histórico.
 
